@@ -1,6 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Header from "./component/Header";
 import Client from "./component/Client";
+import AddClientModal from "./component/AddClientModal";
 
 //link frontend to backend
 const client = new ApolloClient({
@@ -13,6 +14,7 @@ const App = () => {
     <>
       <ApolloProvider client={client}>
         <Header />
+        <AddClientModal />
         <Client />
       </ApolloProvider>
       App
