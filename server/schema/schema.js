@@ -100,7 +100,7 @@ const RootMutation = new GraphQLObjectType({
       type: ClientType,
       args: { id: { type: GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, args) {
-        return Client.findOneAndDelete(args.id);
+        return Client.findByIdAndRemove(args.id);
       },
     },
     //add a project
