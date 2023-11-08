@@ -4,6 +4,7 @@ import { GET_PROJECT } from "../queries/projectQueries";
 import Spinner from "../component/Spinner";
 import ClientInfo from "../component/ClientInfo";
 import DeleteProjectBtn from "../component/DeleteProjectBtn";
+import EditProjectForm from "../component/EditProjectForm";
 // import EditProjectForm from "../component/EditProjectForm";
 // import DeleteProjectButton from "../component/DeleteProjectButton";
 
@@ -25,7 +26,11 @@ const Project = () => {
             Back
           </Link>
           <h1> {project.name} </h1>
+          <p>{project.description} </p>
+          <h5 className="mt-3">Project Status</h5>
+          <p className="lead">{project.status}</p>
           <ClientInfo client={project?.client} />
+          <EditProjectForm project={project} />
           <DeleteProjectBtn projectId={project?.id} />
         </div>
       )}
