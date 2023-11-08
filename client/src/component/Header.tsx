@@ -1,4 +1,4 @@
-import logo from "./assets/logo192.png";
+import logo from "./assets/download.png";
 const Header = () => {
   return (
     <nav className="navbar bg-light mb-4 p-0">

@@ -1,7 +1,9 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Header from "./component/Header";
-import Client from "./component/Client";
-import AddClientModal from "./component/AddClientModal";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./page/Home";
+import NotFound from "./page/NotFound";
+import Project from "./page/Project";
 
 //link frontend to backend
 const client = new ApolloClient({
@@ -13,11 +15,15 @@ const App = () => {
   return (
     <>
       <ApolloProvider client={client}>
-        <Header />
-        <AddClientModal />
-        <Client />
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/projects/:id" element={<Project />} />
+          </Routes>
+        </Router>
       </ApolloProvider>
-      App
     </>
   );
 };
