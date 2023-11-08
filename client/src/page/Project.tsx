@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { GET_PROJECT } from "../queries/projectQueries";
 import Spinner from "../component/Spinner";
 import ClientInfo from "../component/ClientInfo";
+import DeleteProjectBtn from "../component/DeleteProjectBtn";
 // import EditProjectForm from "../component/EditProjectForm";
 // import DeleteProjectButton from "../component/DeleteProjectButton";
 
@@ -25,6 +26,7 @@ const Project = () => {
           </Link>
           <h1> {project.name} </h1>
           <ClientInfo client={project?.client} />
+          <DeleteProjectBtn projectId={project?.id} />
         </div>
       )}
     </>
