@@ -1,8 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { FormEvent, useState } from "react";
-import { FaUser } from "react-icons/fa";
-import { ADD_CLIENT } from "../mutations/clientMutations";
-import GET_CLIENTS from "../queries/clientQueries";
+import { FaList, FaUser } from "react-icons/fa";
 import { ADD_PROJECT } from "../mutations/projectMutation";
 import { GET_PROJECTS } from "../queries/projectQueries";
 
@@ -10,6 +8,7 @@ const AddProjectModal = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [clientId, setClientId] = useState("");
+  const [status, setStatus] = useState("new");
 
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name: name, description: description, clientId: clientId },
@@ -31,27 +30,27 @@ const AddProjectModal = () => {
     <div>
       <button
         type="button"
-        className="btn btn-secondary"
+        className="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#addClientModal"
+        data-bs-target="#addProjectModal"
       >
         <div className="d-flex align-items-center">
-          <FaUser className="icon" />
-          <div className="font-weight-bold">Add Project</div>
+          <FaList className="icon" />
+          <div className="font-weight-bold">New Project</div>
         </div>
       </button>
 
       <div
         className="modal fade"
-        id="addClientModal"
-        aria-labelledby="exampleModalLabel"
+        id="addProjectModal"
+        aria-labelledby="addProjectModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Add Project
+              <h5 className="modal-title" id="addProjectModalLabel">
+                New Project
               </h5>
               <button
                 type="button"
@@ -74,28 +73,40 @@ const AddProjectModal = () => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Description</label>
-                  <input
-                    type="text"
+                  <textarea
                     className="form-control"
-                    id="email"
+                    id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                  />
+                  ></textarea>
                 </div>
                 <div className="mb-3">
+                  <label className="form-label">status</label>
+                  <select
+                    id="status"
+                    className="form-select"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="new">Not Started</option>
+                    <option value="progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+                {/* <div className="mb-3">
                   <label className="form-label">Client Id</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="phone"
+                    id="clientid"
                     value={clientId}
                     onChange={(e) => setClientId(e.target.value)}
                   />
-                </div>
+                </div> */}
                 <button
                   type="submit"
                   data-bs-dismiss="modal"
-                  className="btn btn-secondary"
+                  className="btn btn-primary"
                 >
                   Submit
                 </button>
